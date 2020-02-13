@@ -17,4 +17,18 @@ describe('fetchBreedDescription', () => {
       done();
     });
   });
+
+  it('An invalid/non-existent breed is passed in. we expect the first argument for our callback (err) to be set, and desc to be null.', (done) => {
+    fetchBreedDescription('abc', (err, desc) => {
+      // we expect no error for this scenario
+      assert.equal(err, null);
+
+      const expectedDesc = 'Cant Find This Breed';
+
+      // compare returned description
+      assert.equal(expectedDesc, desc);
+
+      done();
+    });
+  });
 });
